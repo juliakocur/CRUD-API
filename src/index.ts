@@ -1,5 +1,5 @@
 import http, { IncomingMessage, ServerResponse } from 'http';
-import { getAllUsers } from './controllers/users';
+import { getAllUsers, getUserById } from './controllers/users';
 import dotenv from 'dotenv';
 import { parse } from 'url';
 
@@ -13,6 +13,12 @@ const server = http.createServer((req: IncomingMessage, res: ServerResponse) => 
 
   if (req.method === 'GET' && url === '/api/users') {
     return getAllUsers(req, res);
+  }
+
+  const userId = url?.match(/^\/api\/users\/([0-9a-fA-F-]{36})$/);
+    if (req.method === 'GET' && userId) {
+    const id = userId[1];
+    return getUserById(req, res, id);
   }
 
   res.statusCode = 404;
