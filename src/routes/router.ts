@@ -2,6 +2,7 @@ import { IncomingMessage, ServerResponse } from 'http';
 import { getAllUsers, getUserById } from '../controllers/users';
 import { createUser } from '../controllers/createUser';
 import { updateUser } from '../controllers/updateUser';
+import { deleteUser } from '../controllers/deleteUser';
 import { parse } from 'url';
 
 export const userRouter = (req: IncomingMessage, res: ServerResponse): boolean => {
@@ -28,6 +29,12 @@ export const userRouter = (req: IncomingMessage, res: ServerResponse): boolean =
   if (req.method === 'PUT' && userIdMatch) {
     const id = userIdMatch[1];
     updateUser(req, res, id);
+    return true;
+  }
+
+  if (req.method === 'DELETE' && userIdMatch) {
+    const id = userIdMatch[1];
+    deleteUser(req, res, id);
     return true;
   }
 

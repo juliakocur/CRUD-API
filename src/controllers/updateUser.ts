@@ -1,8 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { parseBody, isValidUUID } from '../models/parse';
-import { IUser } from '../models/user';
-
-const users: Record<string, IUser> = {};
+import { IUser, users } from '../models/user';
 
 export const updateUser = async (req: IncomingMessage, res: ServerResponse, userId: string) => {
   if (!isValidUUID(userId)) {
@@ -12,7 +10,9 @@ export const updateUser = async (req: IncomingMessage, res: ServerResponse, user
     return;
   }
 
-  if (!users[userId]) {
+  const userIndex = users.findIndex(user => user.id === userId);
+
+  if (userIndex === -1) {
     res.statusCode = 404;
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify({ message: 'User not found' }));
@@ -20,13 +20,20 @@ export const updateUser = async (req: IncomingMessage, res: ServerResponse, user
   }
 
   try {
-    const updatedUser = await parseBody(req);
-    const response = { ...updatedUser, id: userId };
-    users[userId] = updatedUser;
+    const updatedUserData = await parseBody(req);
+
+    const updatedUser: IUser = {
+      id: userId,
+      username: updatedUserData.username,
+      age: updatedUserData.age,
+      hobbies: updatedUserData.hobbies,
+    };
+
+    users[userIndex] = updatedUser;
 
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(response));
+    res.end(JSON.stringify(updatedUser));
   } catch (error) {
     res.statusCode = 400;
     res.setHeader('Content-Type', 'application/json');
