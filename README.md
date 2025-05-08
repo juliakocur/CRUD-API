@@ -24,10 +24,9 @@ npm i
 ### Rename .env.example 
 ```bash
 mv .env.example .env
-
+```
 
 ## USAGE
-
 ### Development Mode
 - To run the application in development mode with hot-reloading:
    ```sh
@@ -64,4 +63,5 @@ To run the tests:
 
  - Node.js - JavaScript runtime for building the API.
  - TypeScript - For static typing and modern JavaScript features.
- - webpack - Module bundler for building the project.    
+ - webpack - Module bundler for building the project.
+ 
