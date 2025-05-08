@@ -1,5 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { getAllUsers, getUserById } from '../controllers/users';
+import { createUser } from '../controllers/createUser';
 import { parse } from 'url';
 
 export const userRouter = (req: IncomingMessage, res: ServerResponse): boolean => {
@@ -15,6 +16,11 @@ export const userRouter = (req: IncomingMessage, res: ServerResponse): boolean =
   if (req.method === 'GET' && userIdMatch) {
     const id = userIdMatch[1];
     getUserById(req, res, id);
+    return true;
+  }
+
+  if (req.method === 'POST' && url === '/api/users') {
+    createUser(req, res);
     return true;
   }
 
