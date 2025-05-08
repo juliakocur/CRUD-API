@@ -3,12 +3,12 @@
 A simple CRUD (Create, Read, Update, Delete) API for managing users, built with TypeScript and Node.js.
 
 ## START
-1. Clone the project from repository
+### Clone the project from repository
 ```bash
 git clone https://github.com/juliakocur/CRUD-API.git
 ```
 
-2. Check current version of node
+### Check current version of node
 ```bash
 node -v
 ```
@@ -17,14 +17,14 @@ If node is not according to technical requirements, apply correct version
 ```bash
 nvm use 22.9.0
 ```
-3. Install dependencies
+### Install dependencies
 ```bash
 npm i
 ```
-4. Rename .env.example 
+### Rename .env.example 
 ```bash
-# If you are using unix/linux terminal
 mv .env.example .env
+
 
 ## USAGE
 
