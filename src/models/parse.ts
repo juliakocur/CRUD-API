@@ -1,5 +1,5 @@
 import { IncomingMessage } from 'http';
-import { IUser } from './user';
+import { IUser } from './types';
 import { validate as uuidValidate } from 'uuid';
 
 export const parseBody = (req: IncomingMessage): Promise<IUser> => {

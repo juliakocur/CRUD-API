@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { parseBody, isValidUUID } from '../models/parse';
-import { IUser, users } from '../models/user';
+import { IUser, users } from '../models/types';
 
 export const updateUser = async (req: IncomingMessage, res: ServerResponse, userId: string) => {
   if (!isValidUUID(userId)) {

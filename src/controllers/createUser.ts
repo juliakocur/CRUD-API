@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { users } from '../models/user';
+import { users } from '../models/types';
 import { v4 as uuidv4 } from 'uuid';
 
 export const createUser = (req: IncomingMessage, res: ServerResponse) => {

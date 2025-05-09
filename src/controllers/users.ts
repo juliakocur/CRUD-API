@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { users } from '../models/user';
+import { users } from '../models/types';
 import { validate as validUUID } from 'uuid';
 
 export const getAllUsers = (req: IncomingMessage, res: ServerResponse) => {

@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { isValidUUID } from '../models/parse';
-import { users } from '../models/user';
+import { users } from '../models/types';
 
 export const deleteUser = (req: IncomingMessage, res: ServerResponse, userId: string) => {
   if (!isValidUUID(userId)) {
