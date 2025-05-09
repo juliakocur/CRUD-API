@@ -5,6 +5,7 @@ import { userRouter } from './routes/router';
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
+const NODE_ENV = process.env.NODE_ENV || 'production';
 
 const server = http.createServer((req: IncomingMessage, res: ServerResponse) => {
   try {
@@ -21,5 +22,5 @@ const server = http.createServer((req: IncomingMessage, res: ServerResponse) => 
 });
 
 server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT} in ${NODE_ENV} mode`);
 });
