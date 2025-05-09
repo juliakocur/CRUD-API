@@ -21,6 +21,10 @@ const server = http.createServer((req: IncomingMessage, res: ServerResponse) => 
   }
 });
 
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT} in ${NODE_ENV} mode`);
-});
+if (require.main === module) {
+  server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT} in ${NODE_ENV} mode`);
+  });
+};
+
+export { server }; 
