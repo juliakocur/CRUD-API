@@ -7,10 +7,16 @@ dotenv.config();
 const PORT = process.env.PORT || 3000;
 
 const server = http.createServer((req: IncomingMessage, res: ServerResponse) => {
-  if (!userRouter(req, res)) {
-    res.statusCode = 404;
+  try {
+    if (!userRouter(req, res)) {
+      res.statusCode = 404;
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({ message: 'Not found' }));
+    }
+  } catch (error) {
+    res.statusCode = 500;
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ message: 'Not found' }));
+    res.end(JSON.stringify({ message: `Server error: ${(error as Error).message}` }));
   }
 });
 
